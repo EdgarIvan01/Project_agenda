@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas Docker</title>
+    <link rel="icon" href="data:,">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --danger-color: #f72585;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        #taskInput {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        #taskInput:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        #addBtn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        #addBtn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        #deleteBtn {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        #deleteBtn:hover {
+            background-color: #d31665;
+        }
+
+        #viewBtn {
+            background-color: #4cc9f0;
+            color: white;
+        }
+
+        #viewBtn:hover {
+            background-color: #3aa8d8;
+        }
+
+        #tasksList {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .task {
+            background-color: var(--light-color);
+            padding: 12px 15px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .task-id {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .task-text {
+            flex: 1;
+            margin: 0 15px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Tareas</h1>
+        <div class="input-group">
+            <input type="text" id="taskInput" placeholder="Escribe una tarea...">
+        </div>
+        <div class="button-group">
+            <button id="addBtn">➕ Agregar Tarea</button>
+            <button id="deleteBtn">🗑️ Eliminar Tarea</button>
+            <button id="viewBtn">👀 Ver Tareas</button>
+        </div>
+        <div id="tasksList"></div>>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
