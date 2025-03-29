@@ -102,3 +102,37 @@ networks:
 volumes:
   db_data:
 ```
+
+### Ejecución
+1. Clona este repositorio en tu equipo local.
+
+```cmd
+git clone https://github.com/Edgarivan01/Project_agenda.git
+cd Project_agenda
+```
+2. Crea y ejecuta los contenedores con Docker Compose:
+
+```cmd
+docker-compose up --build
+```
+3. Accede a la aplicación:
+- Frontend: Abre tu navegador y visita `http://localhost`.
+- Backend: Puedes acceder a la API en `http://localhost:5000`.
+- Base de datos: Postgres está en el puerto `http://localhost:5432`.
+
+## Estructura de carpetas
+
+```txt
+your-repository/
+├── frontend/
+│ ├── Dockerfile
+│ ├── index.html
+│ └── script.js
+├── backend/
+│ ├── Dockerfile
+│ ├── app.py
+│ └── requirements.txt
+├── Database/
+│ ├── init.sql
+└── docker-compose.yml
+```
