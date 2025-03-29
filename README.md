@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/0cb12ccf-e1fb-4511-809d-43714074776c)# Agenda proyecto
+# Agenda proyecto
 
 Este proyecto es una aplicación web que utiliza un frontend basado en **Nginx** y un backend desarrollado con **Python Flask** que esta conectado a una Base de datos **Postgres**. Los tres componentes están dockerizados para facilitar su implementación y gestión.
 
@@ -57,4 +57,48 @@ CREATE TABLE IF NOT EXISTS tasks (
     text TEXT NOT NULL
 );
 ```
+### 4. Docker Compose
 
+Para facilitar la gestión de ambos contenedores, puede usar Docker Compose. A continuación, se muestra un ejemplo de un archivo `docker-compose.yml`:
+
+```yaml
+version: '3.8'
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+    networks:
+      - todo-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - todo-network
+
+  database:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=todo_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - todo-network
+
+networks:
+  todo-network:
+    driver: bridge
+
+volumes:
+  db_data:
+```
